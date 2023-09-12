@@ -8,3 +8,14 @@ ejecutar : bin/mascotas
 
 clean : bin/mascotas
 	rm bin/mascotas
+
+brA : compilarA ejecutarA
+
+compilarA : src/Asteroids_main.cpp
+	g++ src/Asteroids_main.cpp -o bin/Asteroids -I include
+
+ejecutarA : bin/Asteroids
+	./bin/Asteroids
+
+cleanA : bin/Asteroids
+	rm bin/Asteroids

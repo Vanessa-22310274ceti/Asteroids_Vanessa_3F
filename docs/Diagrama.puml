@@ -1,0 +1,188 @@
+
+class Juego
+{
+    - niveles
+    - personajes 
+
+    + ConteoPuntos()
+    + ConteoVidas()
+    + NuevaPartida()
+}
+
+abstract Nivel
+{
+    - escenario 
+    + Crear() 
+}
+
+class Escenario
+{
+    - color 
+    - personajes
+
+    + Mostrar()
+}
+
+abstract Personaje 
+{
+    - jugador 
+    - enemigos
+    - velocidad 
+    - desplazamiento 
+    - giro 
+    - sonido 
+    - color
+    - tamaño 
+    - forma 
+    
+    + Morir()
+    + Atacar()
+    + Desplazar() 
+    + Acelerar()
+    + Chocar()
+}
+
+class Jugador
+{
+    - vidas
+    - puntos 
+
+    + Girar()
+    + Regenerar()
+    + Morir()
+    + Atacar()
+    + Aparecer()
+    + Desaparecer()
+    
+}
+
+interface Enemigo
+{
+
+}
+
+interface Alien 
+{
+
+}
+
+class Asteroide
+{
+    - forma 
+    - tamaño
+
+    + Destruir()
+    + Dividir()
+    + Morir()
+}
+
+class Nave
+{
+    - balas 
+
+    + Disparar()
+    + Morir()
+}
+
+class Bala
+{
+    - color 
+    - velocidad 
+    - direccion
+    - sonido
+
+    + Impactar()
+}
+
+class Sonido 
+{
+    - frecuencia 
+    - tono 
+    - volumen
+
+    + Sonar()
+}
+'class disparo es un sonido y un metodo de nave
+
+class Color
+{
+    - rojo
+    - azul
+    - verde 
+    - pixel
+
+    + Colorear()
+}
+'Class negro es un color
+
+class Vida
+{
+    - vidas
+    + PerderVida()
+}
+class Punto 
+{
+    - puntos
+    + Conteo()
+}
+
+class Giro 
+{
+    - angulo 
+
+    + Girar() 
+}
+
+class Desplazamiento
+{
+    - distancia
+    - velocidad 
+    - direccion
+    - angulo 
+
+    + Desplazar()
+}
+
+class Velocidad
+{
+    - velocidad 
+
+    + Aumentar()
+    + Disminuir()
+}
+
+
+
+' Juego tiene:   
+Juego "1" *-- "30" Nivel
+    'Nivel es:
+    Nivel "1" --|> "1" Escenario 
+        'Escenario tiene:
+        Escenario "1" *-- "3" Personaje
+        Escenario "1" *-- "2" Color 
+Juego "1" *-- "3" Personaje
+    'Personajes tienen:
+    Personaje "1" *-- "*" Desplazamiento
+    Personaje "1" *-- "*" Velocidad
+    Personaje "1" *-- "2" Color
+    Personaje "1" *-- "2,3" Sonido
+    'Son personajes:
+    Jugador "1" --|> "1" Personaje 
+        'Jugador tiene:
+        Jugador "1" *-- "*" Giro
+        Jugador "1" *-- "3" Vida 
+        Jugador "1" *-- "0*" Punto
+        'Jugador es:
+        Jugador "1" --|> "1" Nave
+            'Nave tiene:
+            Nave "1" o-- "*" Bala
+                'Bala tiene:
+                Bala "1" *-- "1" Sonido
+                Bala "1" *-- "1" Color 
+                Bala "1" *-- "1" Velocidad
+    Enemigo --|> Personaje
+        'Enemigo es:
+        Alien "1" --|> "1" Enemigo
+            'Alien es:
+            Alien "1" --|> "1" Nave 
+        Asteroide "*" --|> "1" Enemigo
