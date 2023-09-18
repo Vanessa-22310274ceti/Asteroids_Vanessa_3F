@@ -1,8 +1,8 @@
-class Asteroids_main
+#include <iostream>
+#include <Alien.hpp>
+
+int main(int argc, char const *argv[])
 {
-private:
-    /* data */
-public:
-    Asteroids_main(/* args */) {}
-    ~Asteroids_main() {}
-};
+    std::cout << "Main" << std::endl;
+    return 0;
+}

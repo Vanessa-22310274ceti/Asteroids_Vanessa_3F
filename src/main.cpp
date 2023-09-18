@@ -4,7 +4,7 @@
 int main(int argc, char const *argv[])
 {
 
-    std::cout << "Tipos de datos" << std::endl;
+    
     // Mascota m1; // Objetos de clase mascota
     // Mascota m2;
 
