@@ -1,188 +1,150 @@
 
-class Juego
+class Juego 
 {
-    - niveles
-    - personajes 
 
-    + ConteoPuntos()
-    + ConteoVidas()
-    + NuevaPartida()
 }
 
-abstract Nivel
+interface Actualizable
 {
-    - escenario 
-    + Crear() 
+    + Actualizar()
 }
 
-class Escenario
+class Alien 
 {
-    - color 
-    - personajes
-
-    + Mostrar()
-}
-
-abstract Personaje 
-{
-    - jugador 
-    - enemigos
-    - velocidad 
-    - desplazamiento 
-    - giro 
-    - sonido 
-    - color
-    - tamaño 
-    - forma 
-    
+    + Alien()
+    + Alien(int x, int y)
+    + Actualizar()
+    + DesplazarIzquierda()
+    + DesplazarDerecha()
+    + DesplazarArriba()
+    + DesplazarAbajo()
+    + Disparar()
     + Morir()
-    + Atacar()
-    + Desplazar() 
-    + Acelerar()
-    + Chocar()
-}
-
-class Jugador
-{
-    - vidas
-    - puntos 
-
-    + Girar()
-    + Regenerar()
-    + Morir()
-    + Atacar()
-    + Aparecer()
-    + Desaparecer()
-    
-}
-
-interface Enemigo
-{
-
-}
-
-interface Alien 
-{
+    + ~Alien()
 
 }
 
 class Asteroide
 {
-    - forma 
-    - tamaño
-
-    + Destruir()
+    + Asteroide()
+    + Asteroide(x, y, recurso)
+    + Actualizar()
+    + DesplazarIzquierda()
+    + DesplazarDerecha()
+    + DesplazarArriba()
+    + DesplazarAbajo()
+    + DesplazarDiagonal()
+    + Disparar()
     + Dividir()
     + Morir()
+    + ~Asteroide()
+}
+
+class Bala 
+{
+    + Bala(x, y)
+    + DesplazarIzquierda()
+    + DesplazarDerecha()
+    + DesplazarArriba()
+    + DesplazarAbajo()
+    + Actualizar()
+    + ~Bala()
+}
+
+class Dibujo
+{
+    - x
+    - y
+
+    + Dibujo()
+    + Dibujo(x,y,recurso)
+    + Dibujo (recurso)
+    + Dibujar()
+    + ~Dibujo()
 }
 
 class Nave
 {
-    - balas 
-
+    + Nave()
+    + Nave(x,y)
+    + Actualizar()
+    + DesplazarIzquierda()
+    + DesplazarDerecha()
+    + DesplazarArriba()
+    + DesplazarAbajo()
     + Disparar()
     + Morir()
+    + ~Nave()
 }
 
-class Bala
+class ObjetoMovil 
 {
-    - color 
-    - velocidad 
-    - direccion
-    - sonido
-
-    + Impactar()
+    + ObjetoMovil()
+    + ObjetoMovil(x, y, recurso)
+    + DesplazarIzquierda()
+    + DesplazarDerecha()
+    + DesplazarArriba()
+    + DesplazarAbajo()
+    + DesplazarDiagonal()
+    + Actualizar()
+    + ~ObjetoMovil()
 }
 
-class Sonido 
+class Portada 
 {
-    - frecuencia 
-    - tono 
-    - volumen
-
-    + Sonar()
+    + Portada()
+    + Portada(x, y)
+    + Actualizar()
+    + ~Portada()
 }
-'class disparo es un sonido y un metodo de nave
+
+class Ventana
+{
+    + Ventana()
+    + Actualizar()
+    + Dibujar()
+    + ~Ventana()
+}
 
 class Color
 {
-    - rojo
-    - azul
-    - verde 
-    - pixel
-
+    + Color()
     + Colorear()
-}
-'Class negro es un color
-
-class Vida
-{
-    - vidas
-    + PerderVida()
-}
-class Punto 
-{
-    - puntos
-    + Conteo()
-}
-
-class Giro 
-{
-    - angulo 
-
-    + Girar() 
-}
-
-class Desplazamiento
-{
-    - distancia
-    - velocidad 
-    - direccion
-    - angulo 
-
-    + Desplazar()
+    + ~Color()
 }
 
 class Velocidad
 {
-    - velocidad 
-
+    + Velocidad()
     + Aumentar()
     + Disminuir()
+    + ~Velocidad()
 }
 
+class Contador
+{
+    - puntos
 
+    + Contador()
+    + Contar()
+    + Guardar()
+    + ~Contador()
+}
 
-' Juego tiene:   
-Juego "1" *-- "30" Nivel
-    'Nivel es:
-    Nivel "1" --|> "1" Escenario 
-        'Escenario tiene:
-        Escenario "1" *-- "3" Personaje
-        Escenario "1" *-- "2" Color 
-Juego "1" *-- "3" Personaje
-    'Personajes tienen:
-    Personaje "1" *-- "*" Desplazamiento
-    Personaje "1" *-- "*" Velocidad
-    Personaje "1" *-- "2" Color
-    Personaje "1" *-- "2,3" Sonido
-    'Son personajes:
-    Jugador "1" --|> "1" Personaje 
-        'Jugador tiene:
-        Jugador "1" *-- "*" Giro
-        Jugador "1" *-- "3" Vida 
-        Jugador "1" *-- "0*" Punto
-        'Jugador es:
-        Jugador "1" --|> "1" Nave
-            'Nave tiene:
-            Nave "1" o-- "*" Bala
-                'Bala tiene:
-                Bala "1" *-- "1" Sonido
-                Bala "1" *-- "1" Color 
-                Bala "1" *-- "1" Velocidad
-    Enemigo --|> Personaje
-        'Enemigo es:
-        Alien "1" --|> "1" Enemigo
-            'Alien es:
-            Alien "1" --|> "1" Nave 
-        Asteroide "*" --|> "1" Enemigo
+Juego "1" *-- "2" Portada
+Juego "1" *-- "5" Nivel 
+Escenario "1" *-- "*" ObjetoMovil 
+Nave --|> ObjetoMovil
+Alien --|> ObjetoMovil 
+Bala --|> ObjetoMovil 
+Asteroide --|> ObjetoMovil 
+ObjetoMovil --|> Dibujo 
+ObjetoMovil "1" o-- "*" Velocidad 
+Portada --|> Dibujo 
+Nivel --|> Escenario 
+Escenario --|> Ventana
+Dibujo --|> Actualizable 
+Dibujo "1" *-- "2" Color
+Nave "1" o-- "*" Bala
+Alien "1" o-- "*" Bala 
+Nave "1" o-- "1" Contador

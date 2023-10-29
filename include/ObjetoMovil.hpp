@@ -1,23 +1,17 @@
-#pragma once // para que no se duplique
+#pragma once                                            // para que no se duplique
 #include <Dibujo.hpp>
 #include <Actualizable.hpp>
 
-class Asteroide : public Dibujo, public Actualizable // Asteroide es un dibujo y un actualizable
+class ObjetoMovil : public Dibujo, public Actualizable // ObjetoMovil es un dibujo y un actualizable
 {
 private:
 public:
-    Asteroide(/* args */) : Dibujo("Asteroids")
+    ObjetoMovil(/* args */) : Dibujo("Asteroids")
     {
     }
 
-    Asteroide(int x, int y, std::string recurso) : Dibujo(x, y, recurso)
+    ObjetoMovil(int x, int y, std::string recurso) : Dibujo(x, y, recurso)
     {
-    }
-
-    void Actualizar()
-    {
-        // this->x += 1;
-        // this->y += 1;
     }
 
     void DesplazarArrriba()
@@ -25,16 +19,16 @@ public:
         this->y -= 1;
         if (this->y == 0)
         {
-            this->y = 200;
+            this->y = 100;
         }
     }
 
     void DesplazarAbajo()
     {
         this->y += 1;
-        if (this->y == 100)
+        if (this->x == 100)
         {
-            this->y = 0;
+            this->x = 0;
         }
     }
 
@@ -58,6 +52,7 @@ public:
 
     void DesplazarDiagonal()
     {
+
         this->x += 1;
         this->y += 1;
 
@@ -71,17 +66,8 @@ public:
         }
     }
 
-    void Disparar()
-    {
-        // this->arma;
-    }
-
-    void Dividir()
+    void Actualizar()
     {
     }
-    void Morir()
-    {
-    }
-
-    ~Asteroide() {}
+    ~ObjetoMovil() {}
 };
