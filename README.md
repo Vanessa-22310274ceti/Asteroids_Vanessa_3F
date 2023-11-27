@@ -18,9 +18,9 @@ El control consiste en aceleración y botón de fuego, y giros en el sentido del
 
 ## Contacto
 Alumna: Vanessa Aguirre Diaz
-
 Registro: 22310274
-
+Alumno: Mario Gerardo Casas Miramontes
+Registro: 22310165
 Grupo: 3°F
 
 
