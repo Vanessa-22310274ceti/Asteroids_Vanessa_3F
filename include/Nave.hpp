@@ -11,7 +11,7 @@ public:
     {
     }
 
-    Nave(int x, int y) : Dibujo(x, y, "NaveDerecha")
+    Nave(int x, int y) : Dibujo(x, y, "Nave")
     {
     }
 

@@ -68,6 +68,9 @@ int main(int argc, char const *argv[])
     while (true)
     {
 
+
+        
+
  
         
         
@@ -114,6 +117,8 @@ int main(int argc, char const *argv[])
         {
             nave->DesplazarAbajo();
         }
+
+        // Disparar derech, izquierda, arriba y abajo
         
 
 
