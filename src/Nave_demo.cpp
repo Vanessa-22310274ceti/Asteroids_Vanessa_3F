@@ -25,6 +25,7 @@ public:
     void move(float offsetX, float offsetY)
     {
         sprite.move(offsetX, offsetY);
+        position = sprite.getPosition();
     }
 
     void draw(sf::RenderWindow &window)
@@ -35,6 +36,10 @@ public:
     void update(){
         
     }
+
+    
+
+
 };
 
 
@@ -107,6 +112,8 @@ int main()
     int da5 = 0;
     
     int i = 0;
+    int i2 = 0;
+    bool teclaEspacio = false;
 
     sf::RenderWindow window(sf::VideoMode(1000, 800), "Asteroids");
    // Enemigo b1(sf::Vector2f(400, 300), "Bala"); // Posicion inicial de la bala donde no se vea hasta que sea usada
@@ -215,50 +222,102 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
             nave.move(nave.velocidad * -1, 0);
-            balas[i].move(balas[i].velocidad * -1, 0);
+            for (int i2 = 0; i2 < 20; i2++)
+            {
+                if (balas[i2].disparo == false)
+                {
+                    balas[i2].move(balas[i2].velocidad * -1, 0);
+                }
+            }
+            
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
             nave.move(nave.velocidad, 0);
-            balas[i].move(balas[i].velocidad, 0);
+            for (int i2 = 0; i2 < 20; i2++)
+            {
+                if (balas[i2].disparo == false)
+                {
+                    balas[i2].move(balas[i2].velocidad, 0);
+                }
+            }
+            
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
             nave.move(0, nave.velocidad * -1);
-            balas[i].move(0, balas[i].velocidad * -1);
+            for (int i2 = 0; i2 < 20; i2++)
+            {
+                if (balas[i2].disparo == false)
+                {
+                    balas[i2].move(0, balas[i2].velocidad * -1);
+                }
+            }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             nave.move(0, nave.velocidad);
-            balas[1].move(0, balas[i].velocidad);
-        }
-
-        for (int i2 = 0; i2 <= i; i2++)
-        {
-            if (balas[i].disparo == true)       // <----------------------- Repetir esto para cada bala con un for de i2 de 0 a i
+            for (int i2 = 0; i2 <20; i2++)
             {
-                balas[i].velocidad = 0.5;
-                balas[i].move(balas[i].velocidad, 0);
-            
+                if (balas[i2].disparo == false)
+                {
+                    balas[i2].move(0, balas[i2].velocidad);
+                }
             }
         }
 
+        for (int i2 = 0; i2 < 20; i2++)
+        {
+            if (balas[i2].disparo == true)       // <----------------------- Repetir esto para cada bala activa con un for de i2 de 0 a i
+            {
+                balas[i2].velocidad = 0.1;               // <------------ Poner direccion segun la tecla presionada
+                balas[i2].move(balas[i2].velocidad, 0);
+                //balas[i].update();
+
+            }
+            if (balas[i2].disparo == false)
+            {
+                //balas[i2].position = nave.position;
+            }
+        }
 
         
-
+        
+        
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
-            balas[i].disparo = true;
+            
             //b1.position = nave.position;
             // recargar bala
-            i++;
-            if (i == 20)
+            //contador++;
+            
+            if (teclaEspacio == false)
             {
-                i = 0;
+                balas[i].disparo = true;
+                teclaEspacio = true;
+                i++;
+                if (i == 10)
+                {
+                    i = 0;
+                }
+                balas[i].disparo = false;
+                
+                
             }
+            
         }
-        
+        //contador = 999;
+
+        // recargar bala
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+        {
+            teclaEspacio = false;
+        }
+
+
+
+
 
         // Actualizar animacion
         nave.update();
@@ -267,26 +326,11 @@ int main()
         a3.update();
         a4.update();
         a5.update();
-        balas[0].update();
-        balas[1].update();
-        balas[2].update();
-        balas[3].update();
-        balas[4].update();
-        balas[5].update();
-        balas[6].update();
-        balas[7].update();
-        balas[8].update();
-        balas[9].update();
-        balas[10].update();
-        balas[11].update();
-        balas[12].update();
-        balas[13].update();
-        balas[14].update();
-        balas[15].update();
-        balas[16].update();
-        balas[17].update();
-        balas[18].update();
-        balas[19].update();
+        for (int i2 = 0; i2 < 20; i2++)
+        {
+            balas[i2].update();
+        }
+        
 
 
         window.clear();
@@ -297,27 +341,11 @@ int main()
         a3.draw(window);
         a4.draw(window);
         a5.draw(window);
-        balas[0].draw(window);
-        balas[1].draw(window);
-        balas[2].draw(window);
-        balas[3].draw(window);
-        balas[4].draw(window);
-        balas[5].draw(window);
-        balas[6].draw(window);
-        balas[7].draw(window);
-        balas[8].draw(window);
-        balas[9].draw(window);
-        balas[10].draw(window);
-        balas[11].draw(window);
-        balas[12].draw(window);
-        balas[13].draw(window);
-        balas[14].draw(window);
-        balas[15].draw(window);
-        balas[16].draw(window);
-        balas[17].draw(window);
-        balas[18].draw(window);
-        balas[19].draw(window);
-
+        for (int i2 = 0; i2 < 20; i2++)
+        {
+            balas[i2].draw(window);
+        }
+       
 
         window.display();
     }
