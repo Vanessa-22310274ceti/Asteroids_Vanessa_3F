@@ -32,7 +32,6 @@ public:
 
 
 
-
 class Personaje
 {
 private:
@@ -118,6 +117,11 @@ public:
 
 int main()
 {
+    
+    
+    
+    
+    
     int da1 = 0;
     int da2 = 0;
     int da3 = 0;
@@ -132,6 +136,22 @@ int main()
     bool portadaOut = false;               // Para que no se repita la portada
 
     sf::RenderWindow window(sf::VideoMode(1000, 800), "Asteroids"); // Crear ventana
+
+    // Cargar la fuente de texto TTF
+    sf::Font font;
+    if (!font.loadFromFile("./assets/fonts/Ring.ttf"))
+    {
+    // Manejar el error si no se puede cargar la fuente
+        return -1;
+    }
+    // Crear un objeto de texto
+    sf::Text score;
+    score.setFont(font);
+    score.setCharacterSize(29);
+    score.setFillColor(sf::Color::White);
+    score.setPosition(395, 0);
+    score.setString("score ");
+
 
     Imagen vida1 = Imagen(sf::Vector2f(0, 0), "Vida");         // Imagen de la vida 1
     Imagen vida2 = Imagen(sf::Vector2f(50, 0), "Vida");        // Imagen de la vida 2
@@ -353,6 +373,7 @@ int main()
 
         window.clear();
 
+        window.draw(score);
         vida1.draw(window);
         vida2.draw(window);
         vida3.draw(window);
