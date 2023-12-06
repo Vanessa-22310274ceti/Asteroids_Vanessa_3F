@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <Imagen.hpp>
 #include <Personaje.hpp>
 #include <Enemigo.hpp>
 #include <Bala.hpp>
