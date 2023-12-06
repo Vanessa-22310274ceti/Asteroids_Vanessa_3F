@@ -1,150 +1,114 @@
-
-class Juego 
-{
-
-}
-
-interface Actualizable
-{
-    + Actualizar()
-}
-
 class Alien 
 {
+    - texture
+    - sprite
+    - velocidad
+    - position
     + Alien()
-    + Alien(int x, int y)
-    + Actualizar()
-    + DesplazarIzquierda()
-    + DesplazarDerecha()
-    + DesplazarArriba()
-    + DesplazarAbajo()
-    + Disparar()
-    + Morir()
     + ~Alien()
-
+    + move()
+    + draw()
+    + update()
+    + setPosition()
+    + getPosition()
 }
 
 class Asteroide
 {
+    - texture
+    - sprite
+    - velocidad
+    - position
     + Asteroide()
-    + Asteroide(x, y, recurso)
-    + Actualizar()
-    + DesplazarIzquierda()
-    + DesplazarDerecha()
-    + DesplazarArriba()
-    + DesplazarAbajo()
-    + DesplazarDiagonal()
-    + Disparar()
-    + Dividir()
-    + Morir()
     + ~Asteroide()
+    + move()
+    + draw()
+    + update()
+    + setPosition()
+    + getPosition()
 }
 
-class Bala 
+class Enemigo
 {
-    + Bala(x, y)
-    + DesplazarIzquierda()
-    + DesplazarDerecha()
-    + DesplazarArriba()
-    + DesplazarAbajo()
-    + Actualizar()
+    - texture
+    - sprite
+    - velocidad
+    - position
+    + Enemigo()
+    + ~Enemigo()
+    + move()
+    + draw()
+    + update()
+    + setPosition()
+    + getPosition()
+}
+
+class Imagen
+{
+    - texture
+    - sprite
+    + Imagen()
+    + ~Imagen()
+    + move()
+    + draw()
+    + update()
+    + setPosition()
+    + getPosition()
+}
+
+class Personaje
+{
+    - texture
+    - sprite
+    - velocidad
+    - position
+    + Personaje()
+    + ~Personaje()
+    + move()
+    + draw()
+    + update()
+    + setPosition()
+    + getPosition()
+}
+
+class Juego
+{
+
+}
+
+class Bala
+{
+    - texture
+    - sprite
+    - velocidad
+    - position
+    - disparo
+    + Bala()
     + ~Bala()
+    + move()
+    + draw()
+    + update()
+    + setPosition()
+    + getPosition()
 }
 
-class Dibujo
+class Vida
 {
-    - x
-    - y
-
-    + Dibujo()
-    + Dibujo(x,y,recurso)
-    + Dibujo (recurso)
-    + Dibujar()
-    + ~Dibujo()
+    - texture
+    - sprite
+    + Vida()
+    + ~Vida()
+    + move()
+    + draw()
+    + update()
+    + setPosition()
+    + getPosition()
 }
 
-class Nave
-{
-    + Nave()
-    + Nave(x,y)
-    + Actualizar()
-    + DesplazarIzquierda()
-    + DesplazarDerecha()
-    + DesplazarArriba()
-    + DesplazarAbajo()
-    + Disparar()
-    + Morir()
-    + ~Nave()
-}
-
-class ObjetoMovil 
-{
-    + ObjetoMovil()
-    + ObjetoMovil(x, y, recurso)
-    + DesplazarIzquierda()
-    + DesplazarDerecha()
-    + DesplazarArriba()
-    + DesplazarAbajo()
-    + DesplazarDiagonal()
-    + Actualizar()
-    + ~ObjetoMovil()
-}
-
-class Portada 
-{
-    + Portada()
-    + Portada(x, y)
-    + Actualizar()
-    + ~Portada()
-}
-
-class Ventana
-{
-    + Ventana()
-    + Actualizar()
-    + Dibujar()
-    + ~Ventana()
-}
-
-class Color
-{
-    + Color()
-    + Colorear()
-    + ~Color()
-}
-
-class Velocidad
-{
-    + Velocidad()
-    + Aumentar()
-    + Disminuir()
-    + ~Velocidad()
-}
-
-class Contador
-{
-    - puntos
-
-    + Contador()
-    + Contar()
-    + Guardar()
-    + ~Contador()
-}
-
-Juego "1" *-- "2" Portada
-Juego "1" *-- "5" Nivel 
-Escenario "1" *-- "*" ObjetoMovil 
-Nave --|> ObjetoMovil
-Alien --|> ObjetoMovil 
-Bala --|> ObjetoMovil 
-Asteroide --|> ObjetoMovil 
-ObjetoMovil --|> Dibujo 
-ObjetoMovil "1" o-- "*" Velocidad 
-Portada --|> Dibujo 
-Nivel --|> Escenario 
-Escenario --|> Ventana
-Dibujo --|> Actualizable 
-Dibujo "1" *-- "2" Color
-Nave "1" o-- "*" Bala
-Alien "1" o-- "*" Bala 
-Nave "1" o-- "1" Contador
+Juego "1" *-- "1" Personaje
+Juego "1" *-- "*" Enemigo
+Asteroide --|> Enemigo
+Alien --|> Enemigo
+Vida --|> Imagen
+Personaje "1" o-- "20" Bala
+Personaje "1" *-- "3" Vida
